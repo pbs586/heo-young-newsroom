@@ -212,4 +212,7 @@ if __name__ == '__main__':
     # 서버 기동 시 최초 1회 즉시 실행 (데이터 확보)
     threading.Thread(target=background_news_sync).start()
     
-    app.run(host='0.0.0.0', port=5000, debug=False, use_reloader=False)
+    # Render 등 배포 환경에서 할당해주는 포트 사용 (기본값 5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=False, use_reloader=False)
+
